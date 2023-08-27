@@ -1,0 +1,77 @@
+// Programa : Controle de motor de passo com Easydriver
+// Autor : Arduino e Cia
+// Pinos conectados ao Step e Dir do Easydriver
+int pino_passo = 5;
+int pino_direcao = 4;
+int direcao = 1;
+// Quantidade de passos para uma volta completa
+// Ajuste de acordo com o seu motor
+int passos_motor = 1600;
+int b;
+int c;
+void setup() 
+{
+  // Define os pinos como saida
+  pinMode(pino_passo, OUTPUT);
+  pinMode(pino_direcao, OUTPUT);
+  pinMode(8,INPUT);
+  pinMode(12,INPUT);
+}
+void loop()
+{
+int a = digitalRead(8);
+int d = digitalRead(12);
+
+if(a==HIGH){
+  if(b<1){
+    b = b +1;
+  }else{
+    b =0;
+  }
+  
+}
+
+
+if(d==HIGH){
+  if(c<1){
+    c = c +1;
+  }else{
+    c =0;
+  }
+}
+
+if (b==1){
+     // Define a direcao de rotacao
+  direcao = 1;
+  digitalWrite(pino_direcao, direcao);
+  for (int p=0 ; p < passos_motor; p++)
+  {
+    digitalWrite(pino_passo, 1);
+    delay(1);
+    digitalWrite(pino_passo, 0);
+    delay(1);
+  }
+  delay(1000); 
+
+  b=0;
+    
+  
+}
+  
+  
+ 
+  if(c ==1){
+    // Inverte a direcao de rotacao
+  direcao = 0;
+  digitalWrite(pino_direcao, direcao);
+  for (int p=0 ; p < passos_motor; p++)
+  {
+    digitalWrite(pino_passo, 1);
+    delay(1);
+    digitalWrite(pino_passo, 0);
+    delay(1);
+  }
+  delay(1000);
+
+  c = 0;
+}}
